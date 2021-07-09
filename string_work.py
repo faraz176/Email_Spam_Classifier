@@ -23,8 +23,16 @@ new_df = pd.DataFrame(new_dict, index=[0])
 
 df = pd.read_csv('emails.csv', nrows=1)
 
+
+for i in new_df.columns:
+    if i not in df.columns:
+        del(new_df[i])
+
+#Appending dataframes together
 work = df.append(new_df).fillna(0)
 
+
+#Filtering for Email No. & Prediction PreProcessing
 big_columns = []
 for col in work.columns:
     if col != 'Email No.':
@@ -32,5 +40,12 @@ for col in work.columns:
 
 work = work[big_columns]
 
+#Final X_Test
 X_test = work.loc[:, work.columns != 'Prediction']
-print(X_test.shape[1])
+
+#Loading the model and predicting
+import pickle
+saved_model = "email.pkl"
+knn_from_pickle = object = pd.read_pickle(r'email.pkl')
+y_pred_1 = knn_from_pickle.predict(X_test)
+print(y_pred_1)
