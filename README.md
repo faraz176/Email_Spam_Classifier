@@ -1,4 +1,9 @@
 # Email_Spam_Classifier
 
 
-An email spam classifier using Logistic Regression
+About:
+An email spam classifier using Logistic Regression along with using classification metrics to find the best model possible. 
+
+
+
+
